@@ -1,0 +1,42 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.notes, .addnotes, .noteDiv {
+    width: 300px;
+    height: auto;
+    border-radius: 7px;
+    background-color: rgb(71, 71, 71);
+    color: white;
+}
+
+.addnotes, .noteDiv {
+    display: none;
+}
+
+.add-note {
+    background-color: rgb(4, 8, 34);
+    color: white;
+    border: none;
+    border-radius: 7px;
+    padding: 6px;
+    margin: 4px;
+}
+
+.note {
+    background-color: rgb(4, 8, 34);
+    color: white;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    border-radius: 4px;
+    margin: 4px;
+}

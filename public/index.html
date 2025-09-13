@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notebook</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="notes">
+        <label style="display: flex;justify-content: center;"><button class="add-note" id="addNote">Add new note</button></label>
+    </div>
+
+    <div class="addnotes">
+        <label style="display: flex;justify-content: center;"><input type="text" id="note" style="background-color: rgb(4, 8, 34);color: white;font-weight: bold;border: none;border-radius: 6px;padding: 2px;"></label>
+        <button style="background-color: rgb(4, 8, 34);color: white;border: none;border-radius: 2px;padding: 7px;display: block;" id="add">Add</button>
+    </div>
+
+    <div class="noteDiv">
+        <button style="background-color: rgb(4, 8, 34);color: white;font-weight: bold;border: none;border-radius: 6px;padding: 7px;margin: 4px;" onclick="back()">Back</button>
+        <button style="background-color: rgb(4, 8, 34);color: white;font-weight: bold;border: none;border-radius: 6px;padding: 7px;margin: 4px;" onclick="deleteBtn()">Delete</button>
+    </div>
+</body>
+<script src="script.js"></script>
+</html>
