@@ -69,4 +69,21 @@ app.delete('/note/delete', (req, res) => {
     });
 });
 
+app.post('/note/search', (req, res) => {
+    const {note} = req.body;
+    if(!note) return res.status(400).send({error: "Required Data"});
+    let searchNote = `%${note}%`;
+    db.all(
+        "SELECT * FROM notes WHERE note LIKE ?", [searchNote], (e, r) => {
+            if(e) {
+                console.error(`SQLite Err: ${e}`);
+                return res.status(500).send("Database Error");
+            }
+            if(r) {
+                res.json(r)
+            }
+        } 
+    )
+})
+
 app.listen(80, () => console.log("Server is available!"));

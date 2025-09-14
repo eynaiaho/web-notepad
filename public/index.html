@@ -3,22 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notebook</title>
+    <title>Document</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="head-body">
+        <header style="color: white;font-weight: bold;font-family:Georgia, 'Times New Roman', Times, serif;" onclick="back()">Simple Notepad 2.0</header>
+        <label><input type="text" id="searchNoteInput"><button class="search-note" id="searchNote">Search Note</button></label>
+        <button class="add-note" id="addNoteBtn">Add Note</button>
+    </div>
     <div class="notes">
-        <label style="display: flex;justify-content: center;"><button class="add-note" id="addNote">Add new note</button></label>
+        
     </div>
-
     <div class="addnotes">
-        <label style="display: flex;justify-content: center;"><input type="text" id="note" style="background-color: rgb(4, 8, 34);color: white;font-weight: bold;border: none;border-radius: 6px;padding: 2px;"></label>
-        <button style="background-color: rgb(4, 8, 34);color: white;border: none;border-radius: 2px;padding: 7px;display: block;" id="add">Add</button>
+        <div class="addNoteDiv">
+            <label style="display: flex;justify-content: center;margin: 6px;">Add new note</label><br>
+            <label style="display: flex;justify-content: center;"><textarea id="noteValue" style="width: 95%;background-color: rgb(77, 77, 77);border: none;border-radius: 7px;
+            min-height: 80px;overflow: auto;resize: none;margin: 6px;color: white;"></textarea></label>
+            <label style="display: flex;justify-content: center;"><button id="add">Add</button></label>
+            <button onclick="back()" class="backButtons">Back</button>
+        </div>
     </div>
-
     <div class="noteDiv">
-        <button style="background-color: rgb(4, 8, 34);color: white;font-weight: bold;border: none;border-radius: 6px;padding: 7px;margin: 4px;" onclick="back()">Back</button>
-        <button style="background-color: rgb(4, 8, 34);color: white;font-weight: bold;border: none;border-radius: 6px;padding: 7px;margin: 4px;" onclick="deleteBtn()">Delete</button>
+        <button onclick="back()" class="backButtons">Back</button>
+        <button onclick="deleteBtn()" class="backButtons">Delete Note</button>
+        <label style="color: white;">Note</label><br>
+    </div>
+    <div class="searchDiv">
+
     </div>
 </body>
 <script src="script.js"></script>

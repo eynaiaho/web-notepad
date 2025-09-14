@@ -5,15 +5,16 @@ document.addEventListener("DOMContentLoaded", async () => {
         data.forEach(data => {
             let note = data.note;
             if(note.length > 10) {
-                note = note.slice(0, 10) + "...";
+                note = note.slice(0, 20) + "...";
             }
             const notesDiv = document.querySelector(".notes");
             const newDiv = document.createElement("div");
             newDiv.className = "note";
             newDiv.id = `note_${data.note_id}`;
-            const newText = document.createElement("label");
-            newText.style = "color: white;font-weight: bold;text-align:left;";
+            const newText = document.createElement("p");
+            newText.style = "color: white;font-weight: bold;text-align:center;display: block;cursor: pointer;";
             newText.textContent = note;
+            newText.id = `textNote_${data.note_id}`
             newDiv.appendChild(newText);
             notesDiv.appendChild(newDiv);
         });
@@ -22,13 +23,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 });
 
-document.querySelector("#addNote").addEventListener("click", () => {
+document.querySelector("#addNoteBtn").addEventListener("click", () => {
     document.querySelector(".addnotes").style.display = "flex";
     document.querySelector(".notes").style.display = "none";
 });
 
 document.getElementById("add").addEventListener("click", async () => {
-    const note = document.querySelector("#note").value || null;
+    const note = document.querySelector("#noteValue").value || null;
+    console.log(note);
     if(note === null) return alert("note section cannot be empty");
     try {
         const response = await fetch("/note/add", {
@@ -59,12 +61,13 @@ document.addEventListener("click", async (event) => {
             const data = await response.json();
             if(data.success == true) {
                 const noteDiv = document.querySelector(".noteDiv");
-                const newText = document.createElement("p");
+                const newText = document.createElement("pre");
                 newText.style = "color: white;";
                 newText.textContent = data.note;
                 newText.id = data.id;
                 noteDiv.appendChild(newText);
-                document.querySelector(".noteDiv").style.display = "flex";
+                console.log("a")
+                document.querySelector(".noteDiv").style.display = "block";
                 document.querySelector(".notes").style.display = "none";
             }
         } catch(error) {
@@ -79,7 +82,7 @@ const back = () => {
 
 const deleteBtn = async () => {
     const noteDiv = document.querySelector(".noteDiv");
-    const id = document.querySelector("p").id;
+    const id = document.querySelector("pre").id;
     try {
         const response = await fetch("/note/delete", {
             method: "DELETE",
@@ -94,3 +97,33 @@ const deleteBtn = async () => {
         console.error(`Error: ${error}`);
     }
 };
+document.querySelector("#searchNote").addEventListener("click", async () => {
+    const searchValue = document.querySelector("#searchNoteInput").value;
+    console.log(searchValue)
+    try {
+        const response = await fetch("/note/search", {
+            method: "POST",
+            headers: {"content-type":"application/json"},
+            body: JSON.stringify({note: searchValue})
+        });
+        if(!response.ok) return console.error("Communication with the server failed");
+        const data = await response.json();
+        data.forEach(data => {
+            const searchDiv = document.querySelector(".searchDiv");
+            searchDiv.innerHTML = "";
+            const newDiv = document.createElement("div");
+            newDiv.className = "note";
+            newDiv.id = `note_${data.note_id}`;
+            const newText = document.createElement("p");
+            newText.style = "color: white;font-weight: bold;text-align:center;display: block;cursor: pointer;";
+            newText.textContent = data.note;
+            newText.id = `textNote_${data.note_id}`
+            newDiv.appendChild(newText);
+            searchDiv.appendChild(newDiv);
+            document.querySelector(".notes").style.display = "none";
+            document.querySelector(".searchDiv").style.display = "flex";
+        })
+    } catch(error) {
+        console.error(`Error: ${error}`);
+    }
+})
