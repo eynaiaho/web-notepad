@@ -1,5 +1,5 @@
 # Web Notepad
-
+**My first project that I shared on GitHub**
 *Simple notepad project built with express.js*
 
 ## Features
